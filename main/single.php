@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php 
+    include("./partials/head.php"); 
+    $id = $_GET['id'];
+?>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <?php include("./partials/hamberger-menu.php"); ?>
+
+    <?php include("./partials/header.php"); ?>
+
+    <?php
+    $row = get_single($id);
+    $rating_pts = $row['rating'] * 10;
+    $type = get_media_type($row['type']);
+    $category = get_media_category($row['category']);
+    //-- Get genre names
+    $genre = $row['genre'];
+    $genres = explode(",",$genre);
+    $genre_list = "";
+    foreach($genres as $genre){
+        $genre_list .= '<span class="tag">'.ucfirst(get_genre($genre)).'</span>';
+    }
+    $language = get_lang($row['lang']);
+    ?>
+    <section class="section spad">
+        <div class="container">
+            <div class="title"><?= $row['title'] ?></div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <img src="../main/img/<?= $type ?>/<?= $category ?>/<?= $row['img_url'] ?>" alt="" class="post-img">
+                </div>
+                <div class="col-md-6">
+                    <div class="rating-item">
+                        <div class="rating-circle">
+                            <div class="loader-circle-wrap">
+                                <div class="loader-circle">
+                                    <span class="circle-progress-1" data-cpid="id-1" data-cpvalue="<?= $rating_pts ?>" data-cpcolor="#c20000">
+                                        <div class="progress-value"></div>
+                                    </span>
+                                    <div class="rating-number"><?= $row['rating'] ?>.0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="rating-text-custom">Rating</p>
+                    </div>
+                    <p class="h3"> <span class="text-theme">Category : </span> <?= ucfirst($category) ?></p>
+                    <p class="h3"> <span class="text-theme">Type : </span> <?= ucfirst($type) ?></p>
+                    <p class="h3"> <span class="text-theme">Released Year : </span> <?= $row['released_dt'] ?></p>
+                    <p class="h3"> <span class="text-theme">Genre : </span><?= $genre_list ?></p>
+                    <p class="h3"> <span class="text-theme">Language : </span><?= ucfirst($language) ?></p>
+                </div>
+            </div>
+
+            <div class="title2">Story Line</div>
+            <div class="content">
+                <?= $row['content']; ?>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                et dolore magna aliqua accusantium doloremque laudantium.
+                
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in. . Sed ut perspiciatis unde omnis iste natus error sit
+                voluptatem.
+            </p>
+            
+
+            <?php
+            if (!empty($row['casts'])){
+            ?>
+                <div class="title2">Top Casts</div>
+                    <div class="row align-items-end">
+                        <?php
+                        //-- Get genre names
+                        $casts = $row['casts'];
+                        $casts = explode(",",$casts);
+                        // var_dump($casts);
+                        
+                        foreach($casts as $cast){
+                            $cast = get_single_cast($cast);
+                            ?>
+
+                            <div class="col-2 p-3">
+                                <img src="./img/casts/<?=$cast['img_url']?>" alt="Emily Rudd">
+                                <p><?= ucfirst($cast['first_name'])." ".ucfirst($cast['last_name'])?></p>
+                            </div>
+                                <?php
+                        }
+                        ?>
+                    </div>
+                </div>        
+                <?php
+            }
+            ?>
+            
+        </div>
+
+    </section>
+
+    <?php include("partials/search-model.php"); ?>
+
+    <?php include("partials/scripts.php"); ?>
+
+</body>
+
+</html>

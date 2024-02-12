@@ -1,0 +1,128 @@
+.section{
+    background: #0d0d0d;
+    padding: 70px 0;
+}
+.post-img{
+    margin: 10px;
+    max-height: 600px;
+    display: flex;
+    margin: auto;
+}
+
+.rating-item{
+    margin: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.rating-circle{
+    height: 60px;
+    width: 60px;
+    float: left;
+    margin-right: 20px;
+    position: relative;
+    z-index: 1;
+}
+.rating-circle::after{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border: 2px solid #1e1e1e;
+    content: "";
+    border-radius: 50%;
+    z-index: -1;
+}
+.rating-number{
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+}
+.rating-text-custom{
+    margin-top: 15px;
+    font-size: 30px;
+    color: #ffffff;
+    font-weight: 100;
+    line-height: 20px;
+    text-transform: uppercase;
+}
+
+.title{
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 100;
+    text-transform: uppercase;
+    padding: 5px 20px;
+    position: relative;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.title:after{
+    position: absolute;
+    left: 0;
+    top: 3px;
+    height: 50px;
+    width: 5px;
+    background: #c20000;
+    content: "";
+}
+.title a{
+    color: white;
+}
+.text-theme{
+    font-style: italic;
+    color: #c20000;
+}
+
+.title2 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 100;
+    text-transform: uppercase;
+    font-style: italic;
+    padding: 10px;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+.title2:after {
+    position: absolute;
+    left: 0;
+    top: 3px;
+    height: 35px;
+    width: 5px;
+    background: #c20000;
+    content: "";
+    -webkit-transform: skewX(-15deg);
+    -ms-transform: skewX(-15deg);
+    transform: skewX(-15deg);
+}
+
+.tag{
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: white;
+    text-align: left;
+    font-family: "Montserrat", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 2px 10px 2px 12px;
+    background: rgba(194, 0, 0, 0.3);
+    transform: skewX(-25deg);
+    margin-left: 5px;
+}
+
+.content{
+    margin: 20px;
+}
+
+.content, .content p{
+    color: white !important;
+}
