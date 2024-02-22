@@ -184,6 +184,9 @@ $page = "pageName";
             $('#genre-form').modal('toggle');
             location.reload();
           }
+          else{
+            alert(resp);
+          }
         }
       })
     })

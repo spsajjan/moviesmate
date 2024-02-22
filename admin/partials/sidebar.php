@@ -30,18 +30,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="view-genre.php" class="nav-link <?php echo ($page == "view-genre" ? "active" : "") ?>">
-                        <i class="nav-icon far fa-bars-staggered"></i>
-                        <p>
-                            View Genre
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="view-casts.php" class="nav-link <?php echo ($page == "view-casts" ? "active" : "") ?>">
                         <i class="nav-icon far fa-users"></i>
                         <p>
                             View Casts
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="view-genre.php" class="nav-link <?php echo ($page == "view-genre" ? "active" : "") ?>">
+                        <i class="nav-icon far fa-bars-staggered"></i>
+                        <p>
+                            View Genre
                         </p>
                     </a>
                 </li>

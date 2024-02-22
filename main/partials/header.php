@@ -51,13 +51,36 @@
                         <div class="megamenu-wrapper">
                             <ul class="mw-nav">
                                 <li><a href="all-media.php"><span>All Media (<?= get_media_num(); ?>)</span></a></li>
-                                <li><a href="anime-movies.php"><span>Anime Movies (<?php get_anime_movies_num(); ?>)</span></a></li>
-                                <li><a href="anime-series.php"><span>Anime Series (<?php get_anime_series_num(); ?>)</span></a></li>
-                                <li><a href="live-movies.php"><span>Live Movies (<?php get_live_movies_num(); ?>)</span></a></li>
-                                <li><a href="live-series.php"><span>Live Series (<?php get_live_series_num(); ?>)</span></a></li>
+                                <li><a href="anime-movies.php"><span>Anime Movies (<?= get_anime_movies_num(); ?>)</span></a></li>
+                                <li><a href="anime-series.php"><span>Anime Series (<?= get_anime_series_num(); ?>)</span></a></li>
+                                <li><a href="live-movies.php"><span>Live Movies (<?= get_live_movies_num(); ?>)</span></a></li>
+                                <li><a href="live-series.php"><span>Live Series (<?= get_live_series_num(); ?>)</span></a></li>
                             </ul>
                             <div class="mw-post">
-                                <?php fetch_mw_post(); ?>
+                                <?php
+                                $rows = get_spec_media("id","DESC","0","5");
+                                foreach($rows as $row):
+                                    $type = get_media_type($row['type']);
+                                    $category = get_media_category($row['category']);
+                                    $img_url = "img/" . $type . "/" . $category . "/" . $row['img_url'];
+                                ?>
+                                <div class="mw-post-item">
+                                    <a href="single.php?id=<?=$row['id']?>">
+                                        <div class="mw-pic">
+                                            <img src="<?=$img_url?>" alt="">
+                                        </div>
+                                        <div class="mw-text">
+                                            <h6><?=$row["title"]?></h6>
+                                            <ul>
+                                                <li>Released Date</li>
+                                                <li><i class="fa fa-clock-o"></i><?=$row["released_dt"]?></li>
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </div>
+                                <?php
+                                endforeach;
+                                ?>
                             </div>
                         </div>
                     </li>

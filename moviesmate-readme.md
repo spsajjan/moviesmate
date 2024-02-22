@@ -28,3 +28,7 @@
     - Rating
     - Released Date
     - Added Date
+
+
+    ### TODOS
+    - Add a image carousel of images of the media, create a new folder for each media and store the images, call all images from the folder

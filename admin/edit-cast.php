@@ -69,7 +69,7 @@ $id = $_GET['id'];
                         <img src="" alt="" id="cimg" style="height: 350px; padding: 10px;">
                       </div>
                       <div class="form-group">
-                        <img src="<?= $img_url; ?>" alt="" id="cimg" style="height: 350px; padding: 10px;">
+                        <img src="" alt="" id="cimg" style="height: 350px; padding: 10px;">
                       </div>
                       <div class="form-group">
                         <label for="dob">Date of Birth</label>

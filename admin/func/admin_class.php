@@ -119,9 +119,9 @@ class Action
 			}
 		}
 		if (empty($id)) {
-			$save = $this->db->query("INSERT INTO `genre_list` SET " . $data);
+			$save = $this->db->query("INSERT INTO `genre` SET " . $data);
 		} else {
-			$save = $this->db->query("UPDATE `genre_list` SET " . $data . " WHERE id = " . $id);
+			$save = $this->db->query("UPDATE `genre` SET " . $data . " WHERE id = " . $id);
 		}
 		if ($save) {
 			return 1;
@@ -131,7 +131,7 @@ class Action
 	function delete_genre()
 	{
 		extract($_POST);
-		$delete = $this->db->query("DELETE FROM `genre_list` WHERE `id` = " . $id);
+		$delete = $this->db->query("DELETE FROM `genre` WHERE `id` = " . $id);
 		if ($delete)
 			return 1;
 	}

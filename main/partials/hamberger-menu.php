@@ -10,10 +10,10 @@
                 <li>Types <i class="fa fa-angle-down"></i>
                     <ul class="dropdown">
                         <li><a href="./all-media.php">All Media (<?= get_media_num(); ?>)</a></li>
-                        <li><a href="./anime-movies.php">Anime Movies (<?php get_anime_movies_num(); ?>)</a></li>
-                        <li><a href="./anime-series.php">Anime Series (<?php get_anime_series_num(); ?>)</a></li>
-                        <li><a href="./live-movies.php">Live Movies (<?php get_live_movies_num(); ?>)</a></li>
-                        <li><a href="./live-series.php">Live Series (<?php get_live_series_num(); ?>)</a></li>
+                        <li><a href="./anime-movies.php">Anime Movies (<?= get_anime_movies_num(); ?>)</a></li>
+                        <li><a href="./anime-series.php">Anime Series (<?= get_anime_series_num(); ?>)</a></li>
+                        <li><a href="./live-movies.php">Live Movies (<?= get_live_movies_num(); ?>)</a></li>
+                        <li><a href="./live-series.php">Live Series (<?= get_live_series_num(); ?>)</a></li>
                     </ul>
                 </li>
             </ul>

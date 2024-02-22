@@ -74,7 +74,6 @@
                 voluptatem.
             </p>
             
-
             <?php
             if (!empty($row['casts'])){
             ?>
@@ -107,8 +106,8 @@
 
     </section>
 
+    <?php include("partials/footer.php"); ?>
     <?php include("partials/search-model.php"); ?>
-
     <?php include("partials/scripts.php"); ?>
 
 </body>
