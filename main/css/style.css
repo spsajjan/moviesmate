@@ -32,16 +32,17 @@
 /* Template default CSS
 /*----------------------------------------*/
 @font-face {
-	font-family: Raleway;
+	font-family: "Raleway";
 	src: url(../fonts/raleway/Raleway-VariableFont_wght.ttf);
+}
+
+* {
+	font-family: "Raleway";
 }
 
 html,
 body {
 	height: 100%;
-	font-family: "Montserrat", sans-serif, Raleway;
-	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
 }
 
 h1,
@@ -53,7 +54,6 @@ h6 {
 	margin: 0;
 	color: #111111;
 	font-weight: 400;
-	font-family: "Raleway", serif;
 }
 
 h1 {
@@ -82,7 +82,6 @@ h6 {
 
 p {
 	font-size: 14px;
-	font-family: "Montserrat", sans-serif;
 	color: #c4c4c4;
 	font-weight: 400;
 	line-height: 24px;
@@ -203,12 +202,14 @@ ol {
 		border: 4px solid #f44336;
 		border-left-color: transparent;
 	}
+
 	50% {
 		-webkit-transform: rotate(180deg);
 		transform: rotate(180deg);
 		border: 4px solid #673ab7;
 		border-left-color: transparent;
 	}
+
 	100% {
 		-webkit-transform: rotate(360deg);
 		transform: rotate(360deg);
@@ -223,11 +224,13 @@ ol {
 		border: 4px solid #f44336;
 		border-left-color: transparent;
 	}
+
 	50% {
 		-webkit-transform: rotate(180deg);
 		border: 4px solid #673ab7;
 		border-left-color: transparent;
 	}
+
 	100% {
 		-webkit-transform: rotate(360deg);
 		border: 4px solid #f44336;
@@ -539,7 +542,6 @@ ol {
 	font-size: 16px;
 	color: #ffffff;
 	text-transform: uppercase;
-	font-family: "Raleway", serif;
 	padding: 15px 0;
 	border-bottom: 1px solid #151515;
 	display: block;
@@ -1012,14 +1014,15 @@ ol {
 .nav-options .nav-menu ul li a {
 	font-size: 15px;
 	color: #ffffff;
-	font-family: "Raleway";
 	text-transform: uppercase;
 	padding: 17px 15px 13px 30px;
 	display: inline-block;
 }
-.nav-options .nav-menu ul li a h6{
-	color:  #ffffff;
+
+.nav-options .nav-menu ul li a h6 {
+	color: #ffffff;
 }
+
 .nav-options .nav-menu ul li a span {
 	display: inline-block;
 }
@@ -2316,7 +2319,8 @@ ol {
 
 .cg-item .cg-pic {
 	position: relative;
-	height: 380px; /* 257 Original Value*/
+	height: 380px;
+	/* 257 Original Value*/
 }
 
 .cg-item .cg-pic .label {
@@ -2344,25 +2348,31 @@ ol {
 }
 
 .cg-item .cg-text {
-	padding-top: 25px;
+	padding-top: 5px;
 	text-transform: uppercase;
 }
 
 .cg-item .cg-text h5 {
 	color: #ffffff;
-	margin-bottom: 8px;
+	margin-bottom: 5px;
 }
 
 .cg-item .cg-text h5 a {
 	color: #ffffff;
 	font-weight: 700;
 	text-transform: uppercase;
-	line-height: 28px;
+	line-height: 20px;
 	font-size: 15px;
 }
 
+.cg-item .cg-text p {
+	color: #ffffff;
+	font-size: 10px;
+	margin-left: 3px;
+}
+
 .cg-item .cg-text ul {
-	margin-bottom: 14px;
+	margin-bottom: 5px;
 }
 
 .cg-item .cg-text ul li {
@@ -3563,7 +3573,6 @@ ol {
 .text-404 h3 {
 	color: #ffffff;
 	font-weight: 500;
-	font-family: "Montserrat", sans-serif;
 	margin-bottom: 12px;
 }
 
@@ -3802,19 +3811,28 @@ ol {
 
 
 /*--------------------------------- Custom CSS -----------------------------*/
-.alpha-section{
+.alpha-section {
 	background: #0d0d0d;
 	padding: 20px 0;
 }
-.alpha-item{
+
+.alpha-item {
 	padding: 0 20px;
 	line-height: 3;
 	font-size: larger;
 	font-weight: bolder;
 }
-.bg-dark{
+
+.bg-dark {
 	background: #0d0d0d !important;
 }
+
+.text-sub {
+	padding: 0;
+	margin: 0 0 0 0;
+	font-size: 10px;
+}
+
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1200px) {
@@ -3829,15 +3847,18 @@ ol {
 	.nav-options .nav-menu ul li {
 		margin-right: 1px;
 	}
+
 	.nav-options .nav-menu ul li .megamenu-wrapper {
 		width: 960px;
 		-webkit-transform: translateX(-480px);
 		-ms-transform: translateX(-480px);
 		transform: translateX(-480px);
 	}
+
 	.hero-slider.owl-carousel .owl-dots {
 		max-width: 930px;
 	}
+
 	.ip-item .ip-pic,
 	.cl-item .cl-pic {
 		max-width: 300px;
@@ -3850,46 +3871,57 @@ ol {
 	.nav-options {
 		text-align: center;
 	}
+
 	.nav-options .nav-menu {
 		display: none;
 	}
+
 	.nav-options .humberger-menu {
 		float: none;
 		margin-right: 10px;
 	}
+
 	.nav-options .nav-search {
 		float: none;
 	}
+
 	.hero-slider.owl-carousel .owl-dots {
 		bottom: 100px;
 		max-width: 690px;
 	}
+
 	.hs-text {
 		padding-top: 50px;
 	}
+
 	.sidebar-option {
 		padding-left: 0;
 		padding-top: 40px;
 	}
+
 	.details-text .dt-pic-item .dp-pic,
 	.contact-form .dt-pic-item .dp-pic {
 		float: none;
 		margin-right: 0;
 	}
+
 	.details-text .dt-pic-item .dp-text,
 	.contact-form .dt-pic-item .dp-text {
 		overflow: visible;
 		padding-top: 20px;
 	}
+
 	.details-text .dt-related-post .rp-prev,
 	.contact-form .dt-related-post .rp-prev {
 		margin-bottom: 30px;
 		overflow: hidden;
 	}
+
 	.copyright-area .ca-text {
 		text-align: center;
 		margin-bottom: 11px;
 	}
+
 	.copyright-area .ca-links {
 		text-align: center;
 	}
@@ -3901,151 +3933,188 @@ ol {
 	.logo {
 		padding: 25px 0;
 	}
+
 	.logo img {
 		max-width: 120px;
 	}
+
 	.nav-options {
 		text-align: center;
 	}
+
 	.nav-options .nav-menu {
 		display: none;
 	}
+
 	.nav-options .humberger-menu {
 		float: none;
 		margin-right: 10px;
 	}
+
 	.nav-options .nav-search {
 		float: none;
 	}
+
 	.hero-slider.owl-carousel .owl-dots {
 		max-width: 100%;
 		margin-left: 15px;
 		margin-right: 15px;
 		bottom: 100px;
 	}
+
 	.hs-text {
 		padding-top: 50px;
 	}
+
 	.sidebar-option {
 		padding-left: 0;
 		padding-top: 40px;
 	}
+
 	.details-text .dt-pic-item .dp-pic,
 	.contact-form .dt-pic-item .dp-pic {
 		float: none;
 		margin-right: 0;
 	}
+
 	.details-text .dt-pic-item .dp-text,
 	.contact-form .dt-pic-item .dp-text {
 		overflow: visible;
 		padding-top: 20px;
 	}
+
 	.details-text .dt-related-post .rp-prev,
 	.contact-form .dt-related-post .rp-prev {
 		margin-bottom: 30px;
 		overflow: hidden;
 	}
+
 	.tab-elem .nav-tabs {
 		position: relative;
 		right: 0;
 		top: 0;
 		margin-bottom: 20px;
 	}
+
 	.un-slider.owl-carousel .owl-nav {
 		top: -46px;
 	}
+
 	.video-guide-section .tab-elem .nav-tabs {
 		top: 0;
 		right: 0;
 	}
+
 	.vg-slider.owl-carousel .owl-nav {
 		top: -46px;
 	}
+
 	.ip-item .ip-pic {
 		float: none;
 		margin-right: 0;
 		max-width: 100%;
 	}
+
 	.ip-item .ip-pic img {
 		width: 100%;
 	}
+
 	.ip-item .ip-text {
 		overflow: visible;
 		padding-top: 30px;
 	}
+
 	.copyright-area .ca-text {
 		text-align: center;
 		margin-bottom: 11px;
 	}
+
 	.copyright-area .ca-links {
 		text-align: center;
 	}
+
 	.ht-options .ht-widget {
 		text-align: center;
 		margin-bottom: 10px;
 	}
+
 	.ht-options .ht-social {
 		display: none;
 	}
+
 	.categories-grid-section .col-lg-8,
 	.categories-grid-section .col-lg-4 {
 		padding-right: 15px !important;
 		padding-left: 15px !important;
 	}
+
 	.categories-list-section .col-lg-8,
 	.categories-list-section .col-lg-4 {
 		padding-right: 15px !important;
 		padding-left: 15px !important;
 	}
+
 	.cl-item .cl-pic {
 		float: none;
 		margin-right: 0;
 		max-width: 100%;
 	}
+
 	.cl-item .cl-pic img {
 		width: 100%;
 	}
+
 	.cl-item .cl-text {
 		overflow: visible;
 		padding-top: 30px;
 	}
+
 	.details-post-section .col-lg-8,
 	.details-post-section .col-lg-4 {
 		padding-right: 15px !important;
 		padding-left: 15px !important;
 	}
+
 	.details-text .dt-leave-comment form .input-list input,
 	.contact-form .dt-leave-comment form .input-list input {
 		width: 100%;
 		margin-right: 0;
 		float: none;
 	}
+
 	.details-text .dt-leave-comment form .input-list,
 	.contact-form .dt-leave-comment form .input-list {
 		margin-right: 0;
 	}
+
 	.details-text .dt-comment .dc-item.reply-item,
 	.contact-form .dt-comment .dc-item.reply-item {
 		margin-left: 40px;
 	}
+
 	.details-text .dt-overall-rating .or-heading .or-item .or-loader,
 	.contact-form .dt-overall-rating .or-heading .or-item .or-loader {
 		float: none;
 	}
+
 	.details-text .dt-overall-rating .or-heading .or-item .or-text,
 	.contact-form .dt-overall-rating .or-heading .or-item .or-text {
 		overflow: visible;
 		padding-top: 30px;
 	}
+
 	.text-404 .search-404 {
 		width: 440px;
 	}
+
 	.signup-text .signup-form {
 		width: 410px;
 	}
+
 	.dg-slider .dg-item {
 		height: 480px;
 	}
+
 	.search-model-form input {
 		width: 100%;
 	}
@@ -4058,59 +4127,71 @@ ol {
 		width: 300px;
 		padding: 30px;
 	}
+
 	.trending-post {
 		padding: 35px 20px 40px 20px;
 	}
+
 	.tab-elem .nav-item {
 		margin-right: 5px;
 	}
+
 	.details-text .dt-share .ds-title,
 	.contact-form .dt-share .ds-title {
 		display: block;
 		margin-right: 0;
 		margin-bottom: 10px;
 	}
+
 	.details-text .dt-share .ds-links a,
 	.contact-form .dt-share .ds-links a {
 		margin-right: 6px;
 		margin-bottom: 10px;
 	}
+
 	.details-text .dt-author .da-pic,
 	.contact-form .dt-author .da-pic {
 		float: none;
 		margin-right: 0;
 	}
+
 	.details-text .dt-author .da-text,
 	.contact-form .dt-author .da-text {
 		overflow: visible;
 		padding-top: 30px;
 	}
+
 	.details-text .dt-author .da-text .da-links a,
 	.contact-form .dt-author .da-text .da-links a {
 		margin-right: 4px;
 		margin-bottom: 8px;
 	}
+
 	.details-text .dt-comment .dc-item .dc-pic,
 	.contact-form .dt-comment .dc-item .dc-pic {
 		float: none;
 		margin-right: 0;
 	}
+
 	.details-text .dt-comment .dc-item .dc-text,
 	.contact-form .dt-comment .dc-item .dc-text {
 		overflow: visible;
 		padding-top: 30px;
 	}
+
 	.details-text .dt-comment .dc-item .dc-text .reply-btn,
 	.contact-form .dt-comment .dc-item .dc-text .reply-btn {
 		position: relative;
 		right: 0;
 		top: 0;
 	}
+
 	.details-text .dt-overall-rating .or-heading .or-skill,
 	.contact-form .dt-overall-rating .or-heading .or-skill {
 		overflow: visible;
 		margin-right: 0;
 	}
+
 	.details-text .dt-overall-rating .or-heading .or-skill .skill-item,
 	.contact-form .dt-overall-rating .or-heading .or-skill .skill-item {
 		width: 100%;
@@ -4118,11 +4199,13 @@ ol {
 		overflow: visible;
 		margin-right: 0;
 	}
+
 	.details-text .dt-overall-rating .or-qualities,
 	.contact-form .dt-overall-rating .or-qualities {
 		overflow: visible;
 		margin-right: 0;
 	}
+
 	.details-text .dt-overall-rating .or-qualities .qualities-item,
 	.contact-form .dt-overall-rating .or-qualities .qualities-item {
 		width: 100%;
@@ -4130,31 +4213,39 @@ ol {
 		overflow: visible;
 		margin-right: 0;
 	}
+
 	.details-text .dt-overall-rating .or-rating p,
 	.contact-form .dt-overall-rating .or-rating p {
 		float: none;
 		margin-bottom: 5px;
 	}
+
 	.details-text .dt-overall-rating .or-rating .rating-star,
 	.contact-form .dt-overall-rating .or-rating .rating-star {
 		float: none;
 	}
+
 	.text-404 h1 {
 		font-size: 135px;
 	}
+
 	.text-404 .search-404 {
 		width: 290px;
 	}
+
 	.copyright-area .ca-links a {
 		margin-right: 15px;
 	}
+
 	.signup-text .signup-form {
 		width: 280px;
 	}
+
 	.editor-choice .ec-item .ec-pic {
 		float: none;
 		margin-bottom: 15px;
 	}
+
 	.search-model-form input {
 		font-size: 28px;
 	}

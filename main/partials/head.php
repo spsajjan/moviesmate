@@ -1,4 +1,5 @@
 <?php include("./libs/fetch_data.php"); ?>
+<?php include("./libs/code.php"); ?>
 
 <head>
     <meta charset="UTF-8">
