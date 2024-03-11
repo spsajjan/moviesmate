@@ -1,22 +1,21 @@
 <?php
-include "./config/db_connect.php";
 include "./func/fetch_data.php";
-$page = "Add New Media";
+$page = "add-new-media";
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "partials/head.php" ?>
+<?php include "inc/head.php" ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-    <?php include "partials/preloader.php" ?>
+    <?php include "inc/preloader.php" ?>
 
-    <?php include "partials/navbar.php" ?>
+    <?php include "inc/navbar.php" ?>
 
-    <?php include "partials/sidebar.php" ?>
+    <?php include "inc/sidebar.php" ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -54,12 +53,12 @@ $page = "Add New Media";
                       <div class="form-group">
                         <label for="language">Language</label>
                         <select class="custom-select rounded-0" id="lang" name="lang">
-                        <?php
+                          <?php
                           $languages = $getData->get_langs();
                           foreach ($languages as $language) :
-                        ?>
-                          <option value="<?= $language['id'] ?>"><?= ucfirst($language['language']) ?></option>
-                        <?php endforeach; ?>
+                          ?>
+                            <option value="<?= $language['id'] ?>"><?= ucfirst($language['language']) ?></option>
+                          <?php endforeach; ?>
                         </select>
                       </div>
                       <div class="form-group">
@@ -113,6 +112,14 @@ $page = "Add New Media";
                         <input type="date" class="form-control" name="date" id="date">
                       </div>
                       <div class="form-group">
+                        <label for="storyline">Storyline</label>
+                        <textarea class="form-control" name="storyline" id="storyline" cols="30" rows="5"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="storyplot">Plot</label>
+                        <textarea class="form-control" name="storyplot" id="storyplot" cols="30" rows="10"></textarea>
+                      </div>
+                      <div class="form-group">
                         <label for="content">Content</label>
                         <textarea class="form-control summernote" name="content" id="content" cols="30" rows="10"></textarea>
                       </div>
@@ -137,7 +144,7 @@ $page = "Add New Media";
                             $casts = $getData->get_all_casts();
                             foreach ($casts as $cast) :
                             ?>
-                              <option value="<?= $cast['id'] ?>"><?= $cast['first_name']." ".$cast['last_name'] ?></option>
+                              <option value="<?= $cast['id'] ?>"><?= $cast['first_name'] . " " . $cast['last_name'] ?></option>
                             <?php endforeach; ?>
                           </select>
                         </div>
@@ -159,21 +166,20 @@ $page = "Add New Media";
     </div>
     <!-- /.content-wrapper -->
 
-    <?php include "partials/control-sidebar.php"; ?>
+    <?php include "inc/control-sidebar.php"; ?>
 
-    <?php include "partials/footer.php"; ?>
+    <?php include "inc/footer.php"; ?>
 
   </div>
   <!-- ./wrapper -->
 
-  <?php include "partials/scripts.php"; ?>
+  <?php include "inc/scripts.php"; ?>
 
   <script type="text/javascript">
-    
     $(document).ready(function() {
-      $("#lang option[value='12']").attr("selected","selected");
+      $("#lang option[value='12']").attr("selected", "selected");
     });
-    
+
     $('#add-media').submit(function(e) {
       e.preventDefault();
       $.ajax({
@@ -225,4 +231,5 @@ $page = "Add New Media";
     });
   </script>
 </body>
+
 </html>

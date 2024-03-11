@@ -1,5 +1,4 @@
 <?php
-include "./config/db_connect.php";
 $page = "dashboard";
 ?>
 
@@ -9,16 +8,16 @@ $page = "dashboard";
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "partials/head.php" ?>
+<?php include "inc/head.php" ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-    <?php include "partials/preloader.php" ?>
+    <?php include "inc/preloader.php" ?>
 
-    <?php include "partials/navbar.php" ?>
+    <?php include "inc/navbar.php" ?>
 
-    <?php include "partials/sidebar.php" ?>
+    <?php include "inc/sidebar.php" ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -44,12 +43,7 @@ $page = "dashboard";
               <div class="small-box bg-info">
                 <div class="inner">
                   <h3>
-                    <?php $sql = "SELECT * FROM `media`";
-                    if ($result = mysqli_query($conn, $sql)) {
-                      $num = mysqli_num_rows($result);
-                      echo $num;
-                    }
-                    ?>
+                    <?= $dbData->get_media_num(); ?>
                   </h3>
 
                   <p>Total Media's</p>
@@ -67,13 +61,7 @@ $page = "dashboard";
               <div class="small-box bg-success">
                 <div class="inner">
                   <h3>
-                    <?php
-                    $sql = "SELECT * FROM `genre`";
-                    if ($result = mysqli_query($conn, $sql)) {
-                      $num = mysqli_num_rows($result);
-                      echo $num;
-                    }
-                    ?>
+                    <?= $dbData->get_genre_num(); ?>
                   </h3>
 
                   <p>Total Genre's</p>
@@ -90,12 +78,7 @@ $page = "dashboard";
               <div class="small-box bg-warning">
                 <div class="inner">
                   <h3>
-                  <?php $sql = "SELECT * FROM `casts`";
-                    if ($result = mysqli_query($conn, $sql)) {
-                      $num = mysqli_num_rows($result);
-                      echo $num;
-                    }
-                    ?>
+                    <?= $dbData->get_casts_num(); ?>
                   </h3>
 
                   <p>Casts (Celebrities / Actors / Actresses)</p>
@@ -111,13 +94,15 @@ $page = "dashboard";
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>65</h3>
-                  <p>Unique Visitors</p>
+                  <h3>
+                    <?= $dbData->get_langs_num(); ?>
+                  </h3>
+                  <p>Languages</p>
                 </div>
                 <div class="icon">
-                  <i class="fa fa-chart-pie"></i>
+                  <i class="fa fa-language"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="view-lang.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -129,13 +114,7 @@ $page = "dashboard";
               <div class="small-box bg-warning">
                 <div class="inner">
                   <h3>
-                    <?php
-                    $sql = "SELECT * FROM `media` WHERE `category`='series' AND `type`='anime'";
-                    if ($result = mysqli_query($conn, $sql)) {
-                      $num = mysqli_num_rows($result);
-                      echo $num;
-                    }
-                    ?>
+                    <?= $dbData->get_anime_series_num() ?>
                   </h3>
                   <p>Anime Series Media's</p>
                 </div>
@@ -151,13 +130,7 @@ $page = "dashboard";
               <div class="small-box bg-dark">
                 <div class="inner">
                   <h3>
-                    <?php
-                    $sql = "SELECT * FROM `media` WHERE `category`='movie' AND `type`='anime'";
-                    if ($result = mysqli_query($conn, $sql)) {
-                      $num = mysqli_num_rows($result);
-                      echo $num;
-                    }
-                    ?>
+                    <?= $dbData->get_anime_movies_num() ?>
                   </h3>
 
                   <p>Anime Movies Media's</p>
@@ -174,13 +147,7 @@ $page = "dashboard";
               <div class="small-box bg-secondary">
                 <div class="inner">
                   <h3>
-                    <?php
-                    $sql = "SELECT * FROM `media` WHERE `category`='movie' AND `type`='live'";
-                    if ($result = mysqli_query($conn, $sql)) {
-                      $num = mysqli_num_rows($result);
-                      echo $num;
-                    }
-                    ?>
+                    <?= $dbData->get_live_movies_num() ?>
                   </h3>
 
                   <p>Live Movies Media's</p>
@@ -197,13 +164,7 @@ $page = "dashboard";
               <div class="small-box bg-primary">
                 <div class="inner">
                   <h3>
-                    <?php
-                    $sql = "SELECT * FROM `media` WHERE `category`='series' AND `type`='live'";
-                    if ($result = mysqli_query($conn, $sql)) {
-                      $num = mysqli_num_rows($result);
-                      echo $num;
-                    }
-                    ?>
+                    <?= $dbData->get_live_series_num() ?>
                   </h3>
                   <p>Live Series Media's</p>
                 </div>
@@ -233,14 +194,14 @@ $page = "dashboard";
     </div>
     <!-- /.content-wrapper -->
 
-    <?php include "partials/control-sidebar.php"; ?>
+    <?php include "inc/control-sidebar.php"; ?>
 
-    <?php include "partials/footer.php" ?>
+    <?php include "inc/footer.php" ?>
 
   </div>
   <!-- ./wrapper -->
 
-  <?php include "partials/scripts.php"; ?>
+  <?php include "inc/scripts.php"; ?>
 
 </body>
 

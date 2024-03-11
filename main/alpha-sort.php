@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include("./partials/head.php");
+include("./inc/head.php");
 $alphabet = $_GET['alpha'];
 ?>
 
@@ -10,8 +10,8 @@ $alphabet = $_GET['alpha'];
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    <?php include("./partials/hamberger-menu.php"); ?>
-    <?php include("./partials/header.php"); ?>
+    <?php include("./inc/hamberger-menu.php"); ?>
+    <?php include("./inc/header.php"); ?>
     <!-- Categories Grid Section Begin -->
     <section class="categories-grid-section spad">
         <div class="container" id="anime-series">
@@ -26,7 +26,7 @@ $alphabet = $_GET['alpha'];
                         <?php
                         // variable to store number of rows per page
                         $limit = 12;
-                        $total_rows = get_media_sort_num($alphabet);
+                        $total_rows = $dbData->get_media_sort_num($alphabet);
                         // get the required number of pages
                         $total_pages = ceil($total_rows / $limit);
                         // update the active page number
@@ -38,50 +38,82 @@ $alphabet = $_GET['alpha'];
                         $current_page_number = $page_number;
                         // get the initial page number
                         $initial_page = ($page_number - 1) * $limit;
-                        $rows = get_media_sort($alphabet, $initial_page, $limit);
+                        $rows = $dbData->get_media_sort($alphabet, $initial_page, $limit);
                         foreach ($rows as $row) :
-                            $media_type = get_media_type($row['type']);
-                            $media_category = get_media_category($row['category']);
-                        ?>
-                            <div class="col-lg-3">
-                                <a href="single.php?id=<?= $row['id'] ?>">
-                                    <div class="cg-item">
-                                        <div class="cg-pic set-bg" data-setbg="img/<?= $media_type ?>/<?= $media_category ?>/<?= $row["img_url"] ?>">
-                                            <div class="label"><span>Rating : <?= $row["rating"] ?> / 10</span></div>
-                                        </div>
-                                        <div class="cg-text">
-                                            <h5><?= $row["title"] ?></h5>
-                                            <ul>
-                                                <li>by <span>Admin</span></li>
-                                                <li><i class="fa fa-clock-o"></i><?= $row["added_dt"] ?></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        <?php endforeach; ?>
+                            $type = $dbData->get_media_type($row['type']);
+                            $category = $dbData->get_media_category($row['category']);
+                            $partData->single_media($row, $type, $category);
+                        endforeach; ?>
                     </div>
+                    <!-- PAGINATION STARTS -->
+                    <div class="pagination-item text-center">
 
-                    <!-- PAGINATION -->
-                    <div class="pagination-item">
                         <?php
-                        for ($page_number = 1; $page_number <= $total_pages; $page_number++) {
+                        $active_page = "";
+                        $start = ($page_number - 4);
+                        //-- Handle start error of negative page number
+                        if ($start <= 0) {
+                            $start = 1;
+                        }
+                        //-- End of pages is current page number + 7 pages
+                        $end = ($page_number + 7);
+                        //-- Handle end pages error if end pages greater than actual pages
+                        if ($end > $total_pages) {
+                            $end = $total_pages;
+                        }
 
-                            if ($page_number == $current_page_number) {
-                        ?><a class="text-secondary" href="alpha-sort.php?alpha=<?= $alphabet ?>&page=<?= $page_number ?>"><span><?= $page_number ?></span></a>
-                            <?php } else {
-                            ?><a href="alpha-sort.php?alpha=<?= $alphabet ?>&page=<?= $page_number ?>"><span><?= $page_number ?></span></a>
+                        //-- If page number is greater than 2 the show first page button  
+                        if ($page_number >= 2) {
+                            $href = "alpha-sort.php?page=$start&alpha=$alphabet";
+                        ?>
+                            <a href="alpha-sort.php?page=1&alpha=$alphabet">
+                                <span class="<?= $active_page ?>">First</span>
+                            </a>
+                            <a href="<?= $href ?>">
+                                <span class="<?= $active_page ?>">&laquo;</span>
+                            </a>
+                        <?php
+                        }
+                        for ($i = $start; $i <= $end; $i++) :
+                            if ($i == $page_number) {
+                                $active_page = "text-secondary";
+                            } else {
+                                $active_page = "";
+                            }
+                            //-- Set href
+                            $href = "alpha-sort.php?page=$i&alpha=$alphabet";
+                            if (isset($_GET['order'])) : $href .= "&order=" . $_GET['order'];
+                            endif;
+                        ?>
+                            <a class="<?= $active_page ?>" href="<?= $href ?>"><span><?= $i ?></span></a>
+                        <?php
+                        endfor;
+                        //-- If page number is less than pages then show last pages option
+                        if ($page_number < $total_pages) {
+                        ?>
+                            <a href="<?= $href ?>">
+                                <span class="<?= $active_page ?>">&raquo;</a>
+                            </a>
+                            <a href="all-media.php?page=<?= $total_pages ?>&alpha=<?= $alphabet ?>">
+                                <span class="<?= $active_page ?>">Last</a>
+                            </a>
                         <?php }
-                        } ?>
+                        ?>
                     </div>
+                    <?php
+                    if ($total_pages > 1) {
+                    ?><p class="text-center mt-2"><?= $page_number ?>&nbsp;of&nbsp;<?= $total_pages ?>&nbsp;Pages</p>
+                    <?php } ?>
+                    <!-- PAGINATION ENDS -->
+
                 </div>
             </div>
         </div>
     </section>
     <!-- Categories Grid Section End -->
-    <?php include("partials/footer.php"); ?>
-    <?php include("partials/search-model.php"); ?>
-    <?php include("partials/scripts.php"); ?>
+    <?php include("inc/footer.php"); ?>
+    <?php include("inc/scripts.php"); ?>
+    <?php include("inc/search-modal.php"); ?>
 </body>
 
 </html>

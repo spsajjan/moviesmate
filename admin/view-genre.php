@@ -1,21 +1,20 @@
 <?php
-include "./config/db_connect.php";
-$page = "pageName";
+$page = "view-genre";
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "partials/head.php" ?>
+<?php include "inc/head.php" ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-    <?php include "partials/preloader.php" ?>
+    <?php include "inc/preloader.php" ?>
 
-    <?php include "partials/navbar.php" ?>
+    <?php include "inc/navbar.php" ?>
 
-    <?php include "partials/sidebar.php" ?>
+    <?php include "inc/sidebar.php" ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -26,7 +25,7 @@ $page = "pageName";
             <div class="col-sm-6">
               <h1 class="m-0">Genre List</h1>
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
                 <li class="breadcrumb-item active">Genre List</li>
               </ol>
             </div><!-- /.col -->
@@ -128,14 +127,14 @@ $page = "pageName";
   </div>
   <!-- /.content-wrapper -->
 
-  <?php include "partials/control-sidebar.php"; ?>
+  <?php include "inc/control-sidebar.php"; ?>
 
-  <?php include "partials/footer.php"; ?>
+  <?php include "inc/footer.php"; ?>
 
   </div>
   <!-- ./wrapper -->
 
-  <?php include "partials/scripts.php"; ?>
+  <?php include "inc/scripts.php"; ?>
 
   <script type="text/javascript">
     $(function() {
@@ -183,8 +182,7 @@ $page = "pageName";
           if (resp == 1) {
             $('#genre-form').modal('toggle');
             location.reload();
-          }
-          else{
+          } else {
             alert(resp);
           }
         }

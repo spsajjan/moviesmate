@@ -41,8 +41,14 @@ if ($action == "get_cast") {
 		echo $get;
 }
 
-if ($action == "save_cast"){
+if ($action == "save_cast") {
 	$save = $crud->save_cast();
-	if($save)
+	if ($save)
+		echo $save;
+}
+
+if ($action == "save_lang") {
+	$save = $crud->save_lang();
+	if ($save)
 		echo $save;
 }

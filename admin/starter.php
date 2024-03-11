@@ -1,5 +1,4 @@
 <?php
-include "./config/db_connect.php";
 $page = "pageName";
 ?>
 
@@ -7,16 +6,16 @@ $page = "pageName";
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "partials/head.php" ?>
+<?php include "inc/head.php" ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-    <?php include "partials/preloader.php" ?>
+    <?php include "inc/preloader.php" ?>
 
-    <?php include "partials/navbar.php" ?>
+    <?php include "inc/navbar.php" ?>
 
-    <?php include "partials/sidebar.php" ?>
+    <?php include "inc/sidebar.php" ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -103,14 +102,14 @@ $page = "pageName";
     </div>
     <!-- /.content-wrapper -->
 
-    <?php include "partials/control-sidebar.php"; ?>
+    <?php include "inc/control-sidebar.php"; ?>
 
-    <?php include "partials/footer.php"; ?>
+    <?php include "inc/footer.php"; ?>
 
   </div>
   <!-- ./wrapper -->
 
-  <?php include "partials/scripts.php"; ?>
+  <?php include "inc/scripts.php"; ?>
 </body>
 
 </html>

@@ -1,7 +1,6 @@
 <?php
-include "./config/db_connect.php";
 include "./func/fetch_data.php";
-$page = "Add New Media";
+$page = "edit-media";
 $id = $_GET['id'];
 $this_media = $getData->get_single_media($id);
 $type = $getData->get_media_type($this_media['type']);
@@ -11,16 +10,16 @@ $img_url = "../main/img/" . $type . "/" . $category . "/" . $this_media['img_url
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "partials/head.php" ?>
+<?php include "inc/head.php" ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-    <?php include "partials/preloader.php" ?>
+    <?php include "inc/preloader.php" ?>
 
-    <?php include "partials/navbar.php" ?>
+    <?php include "inc/navbar.php" ?>
 
-    <?php include "partials/sidebar.php" ?>
+    <?php include "inc/sidebar.php" ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -58,12 +57,12 @@ $img_url = "../main/img/" . $type . "/" . $category . "/" . $this_media['img_url
                       <div class="form-group">
                         <label for="language">Language</label>
                         <select class="custom-select rounded-0" id="lang" name="lang">
-                        <?php
+                          <?php
                           $languages = $getData->get_langs();
                           foreach ($languages as $language) :
-                        ?>
-                          <option value="<?= $language['id'] ?>"><?= ucfirst($language['language']) ?></option>
-                        <?php endforeach; ?>
+                          ?>
+                            <option value="<?= $language['id'] ?>"><?= ucfirst($language['language']) ?></option>
+                          <?php endforeach; ?>
                         </select>
                       </div>
                       <div class="form-group">
@@ -117,6 +116,14 @@ $img_url = "../main/img/" . $type . "/" . $category . "/" . $this_media['img_url
                         <input type="date" class="form-control" name="date" id="date">
                       </div>
                       <div class="form-group">
+                        <label for="storyline">Storyline</label>
+                        <textarea class="form-control" name="storyline" id="storyline" cols="10" rows="5"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="storyplot">Plot</label>
+                        <textarea class="form-control" name="storyplot" id="storyplot" cols="30" rows="10"></textarea>
+                      </div>
+                      <div class="form-group">
                         <label for="content">Content</label>
                         <textarea class="form-control summernote" name="content" id="content" cols="30" rows="10"></textarea>
                       </div>
@@ -140,7 +147,7 @@ $img_url = "../main/img/" . $type . "/" . $category . "/" . $this_media['img_url
                             $casts = $getData->get_all_casts();
                             foreach ($casts as $cast) :
                             ?>
-                              <option value="<?= $cast['id'] ?>"><?= $cast['first_name']." ".$cast['last_name'] ?></option>
+                              <option value="<?= $cast['id'] ?>"><?= $cast['first_name'] . " " . $cast['last_name'] ?></option>
                             <?php endforeach; ?>
                           </select>
                         </div>
@@ -160,11 +167,11 @@ $img_url = "../main/img/" . $type . "/" . $category . "/" . $this_media['img_url
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <?php include "partials/control-sidebar.php"; ?>
-    <?php include "partials/footer.php"; ?>
+    <?php include "inc/control-sidebar.php"; ?>
+    <?php include "inc/footer.php"; ?>
   </div>
   <!-- ./wrapper -->
-  <?php include "partials/scripts.php"; ?>
+  <?php include "inc/scripts.php"; ?>
   <script type="text/javascript">
     $('#edit-media').submit(function(e) {
       e.preventDefault();
@@ -204,17 +211,20 @@ $img_url = "../main/img/" . $type . "/" . $category . "/" . $this_media['img_url
           cat.find("[name='rating']").val(data.rating);
           cat.find("[name='genre']").val(data.genre);
           cat.find("[name='date']").val(data.released_dt);
-          $("#lang option[value='" + data.lang + "']").attr("selected","selected");
+          $("#lang option[value='" + data.lang + "']").attr("selected", "selected");
           var genre_values;
           genre_values = data.genre.split(",");
-          if (data.casts != undefined){
+          if (data.casts != undefined) {
             var cast_values = data.casts;
             cast_values = cast_values.split(",");
             $('#casts').select2({}).select2('val', [cast_values]);
-          } 
+          }
           //-- Show selected genre
           $('#genre_sel').select2({}).select2('val', [genre_values]);
           // cat.find("#content").val(data.content); //-- This doesnt work since we are using summernote.
+          cat.find("#storyline").val(data.storyline);
+          cat.find("#storyplot").val(data.plot);
+          // cat.find("#content").val(data.content);
           $(".summernote").summernote("code", data.content);
           // $('#cimg').attr('src', '');
         }
@@ -251,4 +261,5 @@ $img_url = "../main/img/" . $type . "/" . $category . "/" . $this_media['img_url
     });
   </script>
 </body>
+
 </html>

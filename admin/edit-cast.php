@@ -1,23 +1,21 @@
 <?php
-
-include "./config/db_connect.php";
 include "./func/fetch_data.php";
-$page = "Add New Media";
+$page = "edit-cast";
 $id = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "partials/head.php" ?>
+<?php include "inc/head.php" ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-    <?php include "partials/preloader.php" ?>
+    <?php include "inc/preloader.php" ?>
 
-    <?php include "partials/navbar.php" ?>
+    <?php include "inc/navbar.php" ?>
 
-    <?php include "partials/sidebar.php" ?>
+    <?php include "inc/sidebar.php" ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -102,14 +100,14 @@ $id = $_GET['id'];
     </div>
     <!-- /.content-wrapper -->
 
-    <?php include "partials/control-sidebar.php"; ?>
+    <?php include "inc/control-sidebar.php"; ?>
 
-    <?php include "partials/footer.php"; ?>
+    <?php include "inc/footer.php"; ?>
 
   </div>
   <!-- ./wrapper -->
 
-  <?php include "partials/scripts.php"; ?>
+  <?php include "inc/scripts.php"; ?>
 
   <script type="text/javascript">
     $('#edit-cast').submit(function(e) {
@@ -147,7 +145,7 @@ $id = $_GET['id'];
           cat.find("[name='id']").val(data.id);
           cat.find("[name='first_name']").val(data.first_name);
           cat.find("[name='last_name']").val(data.last_name);
-          $('#cimg').attr("src",img_url) 
+          $('#cimg').attr("src", img_url)
           cat.find("[name='dob']").val(data.dob);
           cat.find("[name='height']").val(data.height);
           cat.find("[name='gender']").val(data.gender);

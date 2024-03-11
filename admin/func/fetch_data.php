@@ -4,7 +4,7 @@ class GetData
     public $db;
     function __construct()
     {
-        include('./config/db_connect.php');
+        include('../config/db_connect.php');
         $this->db = $conn;
     }
     function __destruct()
@@ -57,8 +57,9 @@ class GetData
         $result = $qry->fetch_assoc();
         return $result['category'];
     }
-    function get_lang($id){
-        if(is_null($id)|| $id == 0){
+    function get_lang($id)
+    {
+        if (is_null($id) || $id == 0) {
             $id = 12;
         }
         $sql = "SELECT * FROM lang WHERE id={$id}";
@@ -66,13 +67,15 @@ class GetData
         $result = $qry->fetch_assoc();
         return $result['language'];
     }
-    function get_langs(){
+    function get_langs()
+    {
         $sql = "SELECT * FROM lang";
         $qry = $this->db->query($sql);
         $result = $qry->fetch_all(MYSQLI_ASSOC);
         return $result;
     }
-    function get_all_casts(){
+    function get_all_casts()
+    {
         $sql = "SELECT * FROM casts";
         $qry = $this->db->query($sql);
         $result = $qry->fetch_all(MYSQLI_ASSOC);

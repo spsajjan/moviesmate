@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include("./partials/head.php"); ?>
+<?php include("./inc/head.php"); ?>
 
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    <?php include("./partials/hamberger-menu.php"); ?>
-    <?php include("./partials/header.php"); ?>
+    <?php include("./inc/hamberger-menu.php"); ?>
+    <?php include("./inc/header.php"); ?>
     <!-- YOUR CONTENT HERE -->
-    <?php include("partials/footer.php"); ?>
-    <?php include("partials/search-model.php"); ?>
-    <?php include("partials/scripts.php"); ?>
+    <?php include("inc/footer.php"); ?>
+    <?php include("inc/scripts.php"); ?>
+    <?php include("inc/search-modal.php"); ?>
 </body>
 
 </html>

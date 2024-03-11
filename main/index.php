@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include("./partials/head.php"); ?>
+<?php include("./inc/head.php"); ?>
 
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    <?php include("./partials/hamberger-menu.php"); ?>
-    <?php include("./partials/header.php"); ?>
+    <?php include("./inc/hamberger-menu.php"); ?>
+    <?php include("./inc/header.php"); ?>
 
 
     <section class="sort-section section">
 
         <div class="container">
             <div class="title">
-                <a href="all-media.php">All Media (<?= get_media_num(); ?>) ></a>
+                <a href="all-media.php">All Media (<?= $dbData->get_media_num(); ?>) ></a>
             </div>
             <div class="title">Sort</div>
             <p class="mr-3">Type :- </p>
             <div class="row">
-                <div class="col"><a href="all-movies.php">All Movies (<?= get_movies_num(); ?>)</a></div>
-                <div class="col"><a href="all-series.php">All Series (<?= get_series_num(); ?>)</a></div>
+                <div class="col"><a href="all-movies.php">All Movies (<?= $dbData->get_movies_num(); ?>)</a></div>
+                <div class="col"><a href="all-series.php">All Series (<?= $dbData->get_series_num(); ?>)</a></div>
             </div>
             <p class="mr-3">Year :- </p>
             <div class="row">
                 <?php
-                $rows = get_years();
+                $rows = $dbData->get_years();
                 foreach ($rows as $row) :
                 ?>
-                    <div class="col-1"><a href="media-year.php?year=<?= $row['years'] ?>"><?= $row['years']; ?> (<?= get_media_year_num($row['years']) ?>)</a></div>
+                    <div class="col-1"><a href="media-year.php?year=<?= $row['years'] ?>"><?= $row['years']; ?> (<?= $dbData->get_media_year_num($row['years']) ?>)</a></div>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -54,10 +54,10 @@
 
     <section class="genre-section section">
         <div class="container" id="choose_genre">
-            <div class="title">Sort by Genre (<?= get_genre_num() ?>)</div>
+            <div class="title">Sort by Genre (<?= $dbData->get_genre_num() ?>)</div>
             <div class="row">
                 <?php
-                $genres = get_all_genres();
+                $genres = $dbData->get_genres();
                 foreach ($genres as $genre) :
                 ?>
                     <div class="col-2">
@@ -122,11 +122,11 @@
     <section class="cast-section section">
         <div class="container">
             <div class="title">
-                <a href="all-casts.php">Casts (<?= get_casts_num() ?>)</a>
+                <a href="all-casts.php">Casts (<?= $dbData->get_casts_num() ?>)</a>
             </div>
             <div class="row">
                 <?php
-                $result = get_twelve_casts();
+                $result = $dbData->get_twelve_casts();
                 foreach ($result as $row) :
                 ?>
                     <div class="col-md-2">
@@ -137,9 +137,9 @@
             </div>
         </div>
     </section>
-    <?php include("partials/footer.php"); ?>
-    <?php include("partials/search-model.php"); ?>
-    <?php include("partials/scripts.php"); ?>
+    <?php include("inc/footer.php"); ?>
+    <?php include("inc/scripts.php"); ?>
+    <?php include("inc/search-modal.php"); ?>
 </body>
 
 </html>

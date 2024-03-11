@@ -40,17 +40,6 @@
         $(".nav-options").removeClass("humberger-change");
     });
 
-    // Search model
-    $('.search-switch').on('click', function () {
-        $('.search-model').fadeIn(400);
-    });
-
-    $('.search-close-switch').on('click', function () {
-        $('.search-model').fadeOut(400, function () {
-            $('#search-input').val('');
-        });
-    });
-
     // Sign Up Form
     $('.signup-switch').on('click', function () {
         $('.signup-section').fadeIn(400);
@@ -61,8 +50,8 @@
     });
 
     /*------------------
-		Navigation
-	--------------------*/
+        Navigation
+    --------------------*/
     $(".mobile-menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true

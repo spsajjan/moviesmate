@@ -8,7 +8,7 @@ class Action
 	public function __construct()
 	{
 		ob_start();
-		include '../config/db_connect.php';
+		include '../../config/db_connect.php';
 		$this->db = $conn;
 	}
 	function __destruct()
@@ -29,6 +29,8 @@ class Action
 		extract($_POST);
 		$title = $this->db->real_escape_string($title);
 		$content = $this->db->real_escape_string($content);
+		$storyline = $this->db->real_escape_string($storyline);
+		$storyplot = $this->db->real_escape_string($storyplot);
 		$title = strtolower($title);
 		$genre_id = implode(',', $genre);
 		$data = " id = '$id' ";
@@ -37,15 +39,17 @@ class Action
 		$data .= ", category = '$category' ";
 		$data .= ", type = '$type' ";
 		$data .= ", genre = '$genre_id' ";
-		if(!empty($casts)){
+		if (!empty($casts)) {
 			$casts_id = implode(',', $casts);
 			$data .= ", casts = '$casts_id' ";
 		}
 		$data .= ", rating = '$rating' ";
+		$data .= ", storyline = '$storyline' ";
+		$data .= ", plot = '$storyplot' ";
 		$data .= ", content = '$content' ";
-		$newDate = date("Y-m-d", strtotime($date));		
+		$newDate = date("Y-m-d", strtotime($date));
 		$data .= ", released_dt = '$newDate' ";
-		$data .= ", added_dt = current_timestamp()";
+		$data .= ", update_dt = current_timestamp()";
 		if (!empty($_FILES['img']['name'])) {
 			$fname = $_FILES['img']['name'];
 			$tmp_file = $_FILES["img"]["tmp_name"];
@@ -63,32 +67,31 @@ class Action
 			$save = $this->db->query("INSERT INTO `media` SET " . $data);
 		} else {
 			//-- Change the image location respectively.
-			if(empty($_FILES['img']['name'])){
-			//-- Get Previous Location
-			$sql = "SELECT * FROM media WHERE id={$id}";
-			$qry = $this->db->query($sql);
-			$result = $qry->fetch_assoc();
-			$img_url = $result['img_url'];
-			$qry_type = $this->db->query("SELECT * FROM `media_type` WHERE id={$result['type']}");
-			$type_name = $qry_type->fetch_assoc();
-			$qry_category = $this->db->query("SELECT * FROM `media_category` WHERE id={$result['category']}");
-			$category_name = $qry_category->fetch_assoc();
-			$old_location = '../../main/img/' . $type_name['type'] . '/' . $category_name['category']  . '/' . $img_url;
-			//-- Get New Location
-			$qry_type = $this->db->query("SELECT * FROM `media_type` WHERE id={$type}");
-			$type_name = $qry_type->fetch_assoc();
-			$qry_category = $this->db->query("SELECT * FROM `media_category` WHERE id={$category}");
-			$category_name = $qry_category->fetch_assoc();
-			$location = '../../main/img/' . $type_name['type'] . '/' . $category_name['category'] . '/' . $img_url;
+			if (empty($_FILES['img']['name'])) {
+				//-- Get Previous Location
+				$sql = "SELECT * FROM media WHERE id={$id}";
+				$qry = $this->db->query($sql);
+				$result = $qry->fetch_assoc();
+				$img_url = $result['img_url'];
+				$qry_type = $this->db->query("SELECT * FROM `media_type` WHERE id={$result['type']}");
+				$type_name = $qry_type->fetch_assoc();
+				$qry_category = $this->db->query("SELECT * FROM `media_category` WHERE id={$result['category']}");
+				$category_name = $qry_category->fetch_assoc();
+				$old_location = '../../main/img/' . $type_name['type'] . '/' . $category_name['category']  . '/' . $img_url;
+				//-- Get New Location
+				$qry_type = $this->db->query("SELECT * FROM `media_type` WHERE id={$type}");
+				$type_name = $qry_type->fetch_assoc();
+				$qry_category = $this->db->query("SELECT * FROM `media_category` WHERE id={$category}");
+				$category_name = $qry_category->fetch_assoc();
+				$location = '../../main/img/' . $type_name['type'] . '/' . $category_name['category'] . '/' . $img_url;
 
-				if($location != $old_location){
+				if ($location != $old_location) {
 					rename($old_location, $location);
 					//--* Here move the previously uploaded image to new directory.
 				}
 			}
 
 			$save = $this->db->query("UPDATE `media` SET " . $data . " WHERE id = " . $id);
-			
 		}
 		if ($save) {
 			return 1;
@@ -136,7 +139,8 @@ class Action
 			return 1;
 	}
 
-	function save_cast(){
+	function save_cast()
+	{
 		extract($_POST);
 		$data = " id = '$id' ";
 		$data .= ", first_name = '$first_name' ";
@@ -161,14 +165,29 @@ class Action
 		if ($save) {
 			return 1;
 		}
-
 	}
-	
+
 	function get_cast()
 	{
 		extract($_POST);
 		$qry = $this->db->query("SELECT * FROM `casts` WHERE id=" . $id);
 		$data = $qry->fetch_array();
 		return json_encode($data);
+	}
+
+	function save_lang()
+	{
+		extract($_POST);
+
+		$data = " id = '$id' ";
+		$data .= ", language = '$lang' ";
+		if (empty($id)) {
+			$save = $this->db->query("INSERT INTO `lang` SET " . $data);
+		} else {
+			$save = $this->db->query("UPDATE `lang` SET " . $data . " WHERE id = " . $id);
+		}
+		if ($save) {
+			return 1;
+		}
 	}
 }

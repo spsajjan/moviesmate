@@ -1,5 +1,4 @@
 <?php
-include "./config/db_connect.php";
 include "./func/fetch_data.php";
 $page = "view-casts";
 ?>
@@ -7,16 +6,16 @@ $page = "view-casts";
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "partials/head.php" ?>
+<?php include "inc/head.php" ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-    <?php include "partials/preloader.php" ?>
+    <?php include "inc/preloader.php" ?>
 
-    <?php include "partials/navbar.php" ?>
+    <?php include "inc/navbar.php" ?>
 
-    <?php include "partials/sidebar.php" ?>
+    <?php include "inc/sidebar.php" ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -67,8 +66,8 @@ $page = "view-casts";
                     <tr>
                       <td><?= $i ?></td>
                       <td><img src="<?= $img_url; ?>" alt="" style="height:200px"></td>
-                      <td><?= strtoupper($row['first_name']." ".$row['last_name']) ?></td>
-                      
+                      <td><?= strtoupper($row['first_name'] . " " . $row['last_name']) ?></td>
+
                       <td><?= $row['dob'] ?></td>
                       <td><?= $row['gender'] ?></td>
                       <td><?= $row['height'] ?></td>
@@ -93,22 +92,22 @@ $page = "view-casts";
 
     <?php include "./func/custom-scripts.php"; ?>
 
-    <?php include "partials/control-sidebar.php"; ?>
+    <?php include "inc/control-sidebar.php"; ?>
 
-    <?php include "partials/footer.php"; ?>
+    <?php include "inc/footer.php"; ?>
 
   </div>
   <!-- ./wrapper -->
 
 
-  <?php include "partials/scripts.php"; ?>
+  <?php include "inc/scripts.php"; ?>
 
   <script>
     $(function() {
       $(".table").DataTable({
         dom: "<'row'<'col-sm-3'l><'col-sm-3'f><'col-sm-6'p>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-5'i><'col-sm-7'p>>",
       });
     });
 

@@ -1,5 +1,4 @@
 <?php
-include "./config/db_connect.php";
 include "./func/fetch_data.php";
 $page = "view-media";
 ?>
@@ -7,16 +6,16 @@ $page = "view-media";
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "partials/head.php" ?>
+<?php include "inc/head.php" ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
   <div class="wrapper">
 
-    <?php include "partials/preloader.php" ?>
+    <?php include "inc/preloader.php" ?>
 
-    <?php include "partials/navbar.php" ?>
+    <?php include "inc/navbar.php" ?>
 
-    <?php include "partials/sidebar.php" ?>
+    <?php include "inc/sidebar.php" ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -73,12 +72,12 @@ $page = "view-media";
                       <td><?= $i ?></td>
                       <td><img src="<?= $img_url; ?>" alt="" style="height:200px"></td>
                       <td><?= strtoupper($row['title']) ?></td>
-                      
+
                       <td>
-                        <?php 
-                          $lang = $getData->get_lang($row['lang']);
-                          (is_null($lang) ? "$lang" : "Not Defined");
-                          echo ucfirst($lang) 
+                        <?php
+                        $lang = $getData->get_lang($row['lang']);
+                        (is_null($lang) ? "$lang" : "Not Defined");
+                        echo ucfirst($lang)
                         ?>
                       </td>
                       <td><?= $type ?></td>
@@ -96,9 +95,9 @@ $page = "view-media";
                       </td>
                       <td><?= $row['rating'] ?></td>
                       <td><?php
-                            if(!empty($row['released_dt'])){
-                              echo date("d-M-Y", strtotime($row['released_dt']));
-                            }
+                          if (!empty($row['released_dt'])) {
+                            echo date("d-M-Y", strtotime($row['released_dt']));
+                          }
                           ?>
                       </td>
                       <td class="d-flex flex-column">
@@ -122,22 +121,22 @@ $page = "view-media";
 
     <?php include "./func/custom-scripts.php"; ?>
 
-    <?php include "partials/control-sidebar.php"; ?>
+    <?php include "inc/control-sidebar.php"; ?>
 
-    <?php include "partials/footer.php"; ?>
+    <?php include "inc/footer.php"; ?>
 
   </div>
   <!-- ./wrapper -->
 
 
-  <?php include "partials/scripts.php"; ?>
+  <?php include "inc/scripts.php"; ?>
 
   <script>
     $(function() {
       $(".table").DataTable({
         dom: "<'row'<'col-sm-3'l><'col-sm-3'f><'col-sm-6'p>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+          "<'row'<'col-sm-12'tr>>" +
+          "<'row'<'col-sm-5'i><'col-sm-7'p>>",
       });
     });
 

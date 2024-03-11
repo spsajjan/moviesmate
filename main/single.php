@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php 
-    include("./partials/head.php"); 
-    $id = $_GET['id'];
+<?php
+include("./inc/head.php");
+$id = $_GET['id'];
 ?>
 
 <body>
@@ -11,23 +11,23 @@
         <div class="loader"></div>
     </div>
 
-    <?php include("./partials/hamberger-menu.php"); ?>
+    <?php include("./inc/hamberger-menu.php"); ?>
 
-    <?php include("./partials/header.php"); ?>
+    <?php include("./inc/header.php"); ?>
 
     <?php
-    $row = get_single($id);
+    $row = $dbData->get_single_media($id);
     $rating_pts = $row['rating'] * 10;
-    $type = get_media_type($row['type']);
-    $category = get_media_category($row['category']);
+    $type = $dbData->get_media_type($row['type']);
+    $category = $dbData->get_media_category($row['category']);
     //-- Get genre names
     $genre = $row['genre'];
-    $genres = explode(",",$genre);
+    $genres = explode(",", $genre);
     $genre_list = "";
-    foreach($genres as $genre){
-        $genre_list .= '<span class="tag">'.ucfirst(get_genre($genre)).'</span>';
+    foreach ($genres as $genre) {
+        $genre_list .= '<span class="tag">' . ucfirst($dbData->get_genre($genre)) . '</span>';
     }
-    $language = get_lang($row['lang']);
+    $language = $dbData->get_lang($row['lang']);
     ?>
     <section class="section spad">
         <div class="container">
@@ -57,58 +57,66 @@
                     <p class="h3"> <span class="text-theme">Language : </span><?= ucfirst($language) ?></p>
                 </div>
             </div>
-
-            <div class="title2">Story Line</div>
-            <div class="content">
-                <?= $row['content']; ?>
-            </div>
+            <?php if (!empty($row['storyline'])) : ?>
+                <div class="title2">Story Line</div>
+                <div class="storyline">
+                    <?= $row['storyline']; ?>
+                </div>
+            <?php endif; ?>
+            <?php if (!empty($row['plot'])) : ?>
+                <div class="title2">Plot</div>
+                <div class="plot">
+                    <?= $row['plot']; ?>
+                </div>
+            <?php endif; ?>
+            <?php if (!empty($row['content'])) : ?>
+                <div class="title2">Story</div>
+                <div class="content">
+                    <?= $row['content']; ?>
+                </div>
+            <?php endif; ?>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 Duis aute irure Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
                 et dolore magna aliqua accusantium doloremque laudantium.
-                
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in. . Sed ut perspiciatis unde omnis iste natus error sit
-                voluptatem.
             </p>
-            
+
             <?php
-            if (!empty($row['casts'])){
+            if (!empty($row['casts'])) {
             ?>
                 <div class="title2">Top Casts</div>
-                    <div class="row align-items-end">
-                        <?php
-                        //-- Get genre names
-                        $casts = $row['casts'];
-                        $casts = explode(",",$casts);
-                        // var_dump($casts);
-                        
-                        foreach($casts as $cast){
-                            $cast = get_single_cast($cast);
-                            ?>
+                <div class="row align-items-end">
+                    <?php
+                    //-- Get genre names
+                    $casts = $row['casts'];
+                    $casts = explode(",", $casts);
+                    // var_dump($casts);
 
-                            <div class="col-2 p-3">
-                                <img src="./img/casts/<?=$cast['img_url']?>" alt="Emily Rudd">
-                                <p><?= ucfirst($cast['first_name'])." ".ucfirst($cast['last_name'])?></p>
-                            </div>
-                                <?php
-                        }
-                        ?>
-                    </div>
-                </div>        
-                <?php
-            }
-            ?>
-            
+                    foreach ($casts as $cast) {
+                        $cast = $dbData->get_single_cast($cast);
+                    ?>
+
+                        <div class="col-2 p-3">
+                            <img src="./img/casts/<?= $cast['img_url'] ?>" alt="Emily Rudd">
+                            <p><?= ucfirst($cast['first_name']) . " " . ucfirst($cast['last_name']) ?></p>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
         </div>
+    <?php
+            }
+    ?>
+
+    </div>
 
     </section>
 
-    <?php include("partials/footer.php"); ?>
-    <?php include("partials/search-model.php"); ?>
-    <?php include("partials/scripts.php"); ?>
+    <?php include("inc/footer.php"); ?>
+    <?php include("inc/scripts.php"); ?>
+    <?php include("inc/search-modal.php"); ?>
 
 </body>
 
